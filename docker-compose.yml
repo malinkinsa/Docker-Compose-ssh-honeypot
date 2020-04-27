@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  honeypot:
+    build: .
+    environment: 
+       - APPLICATION=ssh-honeypot -r /ssh-honeypot/ssh-honeypot.rsa -i 2 -p 22 -u nobody -l /var/log/ssh-honeypot.log
+    restart: always
+    ports:
+      - "22:22"
+    volumes:
+      - ./log/:/var/log/
